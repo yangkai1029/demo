@@ -1,0 +1,25 @@
+server:
+  port: 9000
+
+spring:
+  jackson:
+    date-format:  yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+    default-property-inclusion: non_null
+    serialization:
+       write-dates-as-timestamps: false
+  profiles:
+    active: prod
+  swagger:
+    basePath: /
+  http:
+    encoding:
+      force: true
+      charset: utf-8
+      enabled: true
+
+
+logging:
+  config: classpath:config/logback.xml
+  level:
+    com.example.demo: TRACE

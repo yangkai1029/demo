@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration>
+    <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} %-5level [%-20thread] traceId:[%X{TRACE_ID}] [%-30logger{30}] %msg%n</pattern>
+        </encoder>
+    </appender>
+    <appender name="file-info" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>INFO</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        <Prudent>true</Prudent>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <FileNamePattern>
+                log/info.%d{yyyy-MM-dd}.log
+            </FileNamePattern>
+            <!-- keep ${logback.maxhistory} days worth of history -->
+            <MaxHistory>${logback.maxhistory}</MaxHistory>
+        </rollingPolicy>
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <Pattern>%d{yyyy-MM-dd HH:mm:ss} -%msg%n</Pattern>
+        </layout>
+        <encoder>
+            <charset>UTF-8</charset>
+            <!--<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %-5p [%c{0}] %m%n</pattern>-->
+            <pattern>%d{yy-MM-dd HH:mm:ss.SSS} %-5level [%-20thread] traceId:[%X{TRACE_ID}] [%-30logger{30}] %msg%n</pattern>
+        </encoder>
+    </appender>
+    <appender name="file-error" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <Prudent>true</Prudent>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>ERROR</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY </onMismatch>
+        </filter>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <FileNamePattern>log/error.%d{yyyy-MM-dd}.log</FileNamePattern>
+            <!-- keep ${logback.maxhistory} days worth of history -->
+            <MaxHistory>${logback.maxhistory}</MaxHistory>
+        </rollingPolicy>
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <Pattern>%d{yyyy-MM-dd HH:mm:ss} -%msg%n</Pattern>
+        </layout>
+        <encoder>
+            <charset>UTF-8</charset>
+            <!--<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %-5p [%c{0}] %m%n</pattern>-->
+            <pattern>%d{yy-MM-dd HH:mm:ss.SSS} %-5level [%-20thread] traceId:[%X{TRACE_ID}] [%-30logger{30}] %msg%n</pattern>
+        </encoder>
+    </appender>
+    <root>
+        <level value="all"/>
+        <appender-ref ref="stdout"/>
+        <appender-ref ref="file-info"/>
+        <appender-ref ref="file-error"/>
+    </root>
+
+
+
+</configuration>
