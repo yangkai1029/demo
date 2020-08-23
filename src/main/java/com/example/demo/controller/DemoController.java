@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import org.springframework.util.StopWatch;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,6 +19,7 @@ import java.util.Map;
 public class DemoController {
 
     @RequestMapping("info")
+    @PostMapping
     public Map info(HttpServletRequest request, String a){
         StopWatch sw = new StopWatch("test");
         sw.start("info");
